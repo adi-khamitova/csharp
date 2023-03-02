@@ -3,7 +3,7 @@
 namespace Helloworld {
     public class Program {
         public static void Main() {
-
+            Console.WriteLine("started");
             int n = Convert.ToInt32(Console.ReadLine());
             int[] a = new int[n];
             string[] str_a = Console.ReadLine()!.Split();
