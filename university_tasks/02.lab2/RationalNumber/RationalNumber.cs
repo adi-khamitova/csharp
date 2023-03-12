@@ -46,6 +46,7 @@ public class RationalNumber {
     }
 
     public void Output() {
+        Normalize();
         int IntegerPart = GetIntegerPart();
         int n = GetNumerator();
         int d = Denominator;
@@ -110,7 +111,7 @@ public class RationalNumber {
         n1.Normalize();
         n2.Normalize();
         n1.Denominator *= n2.denominator;
-        n1.Numerator += n2.denominator;
+        n1.Numerator *= n2.denominator;
         n2.Denominator *= n1.denominator;
         n2.Numerator *= n1.denominator;
 
@@ -124,7 +125,7 @@ public class RationalNumber {
         n1.Normalize();
         n2.Normalize();
         n1.Denominator *= n2.denominator;
-        n1.Numerator += n2.denominator;
+        n1.Numerator *= n2.denominator;
         n2.Denominator *= n1.denominator;
         n2.Numerator *= n1.denominator;
 
@@ -133,6 +134,7 @@ public class RationalNumber {
         else
             return true;
     }
+
 
 }
 
@@ -143,7 +145,7 @@ class Program {
     static void Main() {
 
 
-/*
+
         // 1
         RationalNumber num1 = new RationalNumber();
         RationalNumber num2 = new RationalNumber();
@@ -213,30 +215,25 @@ class Program {
         r2.Output();
         r3.Output();
 
-*/
+
 
         Console.WriteLine();
         // 4
 
         
-        List<RationalNumber> list = new List<RationalNumber>();
-        RationalNumber el = new RationalNumber();
+        RationalNumber[] arr = new RationalNumber[5];
         Console.WriteLine("Enter the elements of array:");
         for (int i = 0; i < 5; i++) {
+            RationalNumber el = new RationalNumber();
             el.Input();
-            list.Add(el);
-            for (int j = 0; j < i; j++) {
-                list[j].Output();
-            }
+            arr[i] = el;
         }
     
         RationalNumber sum = new RationalNumber(0, 1);
         RationalNumber prod = new RationalNumber(1, 1);
         for (int i = 0; i < 5; i++) {
-            sum += list[i];
-            prod *= list[i];
-            sum.Output();
-            prod.Output();
+            sum += arr[i];
+            prod *= arr[i];
         }
 
         Console.Write("the sum = ");
@@ -245,11 +242,13 @@ class Program {
         Console.Write("the product = ");
         prod.Output();
 
-        RationalNumber max = list[0];
-        RationalNumber min = list[0];
+        RationalNumber max = arr[0];
+        RationalNumber min = arr[0];
         for (int i = 1; i < 5; i++) {
-            if (list[i] > max) max = list[i];
-            if (list[i] < min) min = list[i];
+            if (arr[i] > max) max = arr[i];
+            if (arr[i] < min) min = arr[i];
+            max.Output();
+            min.Output();
         }
 
         Console.Write("Max: ");
@@ -258,6 +257,5 @@ class Program {
         min.Output();
         Console.WriteLine("Difference: ");
         (max - min).Output();
-        
     }
 }
